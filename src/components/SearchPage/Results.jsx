@@ -9,28 +9,9 @@ import {
 } from "@mui/material";
 import { useSelector } from "react-redux";
 
-function Results({handleLinkClick}) {
+function Results({handleClickAnalytics}) {
   const results = useSelector((state) => state.search.results);
   const status = useSelector((state) => state.search.status);
-
-  // const handleClick = (e, item, position = 1) => {
-  //   e.preventDefault();
-
-  //   console.log("🟢 Click logged:", item);
-
-  //   const { logCustomDocumentOpen } = loadClickAnalyticsActions(engine);
-
-  //   engine.dispatch(
-  //     logCustomDocumentOpen({
-  //       documentUri: item.uri,
-  //       documentUriHash: item.id,
-  //       documentTitle: item.title,
-  //       collectionName: "Flights",
-  //       sourceName: "flightSearchApp",
-  //       documentPosition: position,
-  //     })
-  //   );
-  // };
 
   if (status.isLoading) {
     return (
@@ -62,7 +43,7 @@ function Results({handleLinkClick}) {
                   href={r.uri}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(e) => handleLinkClick(e, r,)}
+                  onClick={(e) => handleClickAnalytics(e, r,)}
                   style={{
                     color: "#1976d2",
                     fontSize: 16,

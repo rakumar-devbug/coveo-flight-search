@@ -124,41 +124,10 @@ function SearchPage({ engine }) {
   }, [engine]);
 
   
-
-const handleClick = (e, item) => {
+const handleClickAnalytics = (e, item) => {
   // if (e) e.preventDefault(); 
-  console.log("Click logged:", item);
   const { logDocumentOpen } = loadClickAnalyticsActions(engine);
-
-  const mockResult = {
-    title: item.title || 'Untitled Document', // Required string
-    uri: item.uri, // The document's clickable URI (string)
-    uniqueId: item.uniqueId || item.permanentid || item.uri, // Unique identifier (string); prefer @permanentid from index
-    excerpt: item.excerpt || '', // Optional summary (string)
-    raw: {
-      uri: item.uri,
-      permanentid: item.uniqueId || item.permanentid || item.uri, // For contentIDValue in analytics
-    },
-    // Optional fields (can omit or set defaults)
-    clickUri: item.uri,
-    printableUri: item.uri,
-    hasHtmlVersion: false,
-    isRecommendation: false,
-    isTopResult: false,
-    percentScore: 0,
-    score: 0,
-    rankingInfo: null,
-    excerptHighlights: [],
-    titleHighlights: [],
-    firstSentences: '',
-    firstSentencesHighlights: [],
-    summaryHighlights: [],
-    printableUriHighlights: [],
-    absentTerms: [],
-    flags: '',
-  };
-
-  engine.dispatch(logDocumentOpen(mockResult));
+    engine.dispatch(logDocumentOpen(item));
 };
 
   return (
@@ -172,7 +141,7 @@ const handleClick = (e, item) => {
       <Facet engine={engine} />
       <hr />
       <Sort />
-      <Results handleLinkClick={handleClick}/>
+      <Results handleClickAnalytics={handleClickAnalytics}/>
       <Pager />
     </Box>
   );

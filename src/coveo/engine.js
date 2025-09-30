@@ -17,6 +17,10 @@ export const engine = buildSearchEngine({
       searchHub: import.meta.env.VITE_COVEO_SEARCH_HUB,
       pipeline: import.meta.env.VITE_COVEO_PIPELINE,
     },
-    analytics: { enabled: true },
+    analytics: {
+      enabled: true,
+      // originLevel2: 'Search Page',     // Required for analytics grouping
+      // originLevel3: 'Main Search UI',  // Optional but recommended
+    },
   },
 });
